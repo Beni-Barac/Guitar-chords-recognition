@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Chord Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Guitar Chord Recognition</h1>
+            <p>Record or upload a guitar chord to identify it</p>
+        </header>
+
+        <div class="controls">
+            <div class="upload-section">
+                <h2>Upload Audio</h2>
+                <form id="upload-form">
+                    <input type="file" id="audio-file" accept="audio/*">
+                    <button type="submit" id="upload-btn">Analyze</button>
+                </form>
+            </div>
+
+            <div class="record-section">
+                <h2>Record Audio</h2>
+                <button id="record-btn">Start Recording</button>
+                <button id="stop-btn" disabled>Stop Recording</button>
+                <div id="recording-timer">00:00</div>
+            </div>
+        </div>
+
+        <div class="results hidden" id="results-section">
+            <h2>Analysis Results</h2>
+            <div class="result-content">
+                <div class="spectrogram-container">
+                    <h3>Spectrogram</h3>
+                    <img id="spectrogram" src="" alt="Audio Spectrogram">
+                </div>
+                <div class="prediction-container">
+                    <h3>Predicted Chord</h3>
+                    <div class="chord-display">
+                        <span id="chord-name">-</span>
+                        <span id="confidence">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="audio-player hidden" id="audio-player-section">
+            <h3>Recorded Audio</h3>
+            <audio id="audio-player" controls></audio>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p>Analyzing audio...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
