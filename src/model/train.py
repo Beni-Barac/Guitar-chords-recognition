@@ -1,6 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import os
+import math
 import matplotlib.pyplot as plt
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from .architecture import create_chord_recognition_model
@@ -89,10 +90,10 @@ def train_model(data_dir, model_save_path, epochs=50):
     # Train the model
     history = model.fit(
         train_generator,
-        steps_per_epoch=train_generator.samples // BATCH_SIZE,
+        steps_per_epoch=math.ceil(train_generator.samples / BATCH_SIZE),
         epochs=epochs,
         validation_data=validation_generator,
-        validation_steps=validation_generator.samples // BATCH_SIZE,
+        validation_steps=math.ceil(validation_generator.samples / BATCH_SIZE),
         callbacks=callbacks
     )
 
